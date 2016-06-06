@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=360, initial-scale=1">
+    <title>Document</title>
+ <style>
+  html, body, div, span, applet, object, iframe,
+  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  a, abbr, acronym, address, big, cite, code,
+  del, dfn, em, img, ins, kbd, q, s, samp,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
+  dl, dt, dd, ol, ul, li,
+  fieldset, form, label, legend,
+  table, caption, tbody, tfoot, thead, tr, th, td,
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
+  menu, nav, output, ruby, section, summary,
+  time, mark, audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font: inherit;
+   vertical-align: baseline;
+  }
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section {
+   display: block;
+  }
+  #row1 {
+   width: 360px;
+   height: 640px;
+ //  display: block;
+   background-repeat: no-repeat;
+  }
+  #mu1 {
+  background-color: #d8d8d8;
+   width: 360px;
+   height: 640px;
+   background-repeat: no-repeat;
+  }
+  #menuC{
+	height: 263px; width: 354px; margin: 3px 3px 0px; background-position: 358px 417px;
+  }
+  .mex{
+	background-color: rgb(40, 81, 167);
+    color: white;
+    font-size: 16px;
+    height: 29px;
+    line-height: 30px;
+    margin: 0 3px;
+    text-align: center;
+    width: 354px;
+　}
+  .menuC1{
+   background-position: 358px 452px;
+    background-size: 354px auto;
+    height: 263px;
+    margin: 3px 3px 0;
+    width: 354px;
+
+  }
+  .hide{
+   display: none;
+  }
+  #nowtime{
+   color: #ccc;
+   position: relative;
+   right: -293px;
+   width: 61px;
+   top: 4px;
+   font-size: 14px;
+   background-color: black;
+   text-align: right;
+  }
+  #counttime{
+   background-color: #fda903;
+   position: relative;
+   right: -217px;
+   color: rgba(255, 255, 255, 0.8);
+   top: 561px;
+   font-size: 24px;
+   width: 90px;
+  }
+ </style>
+</head>
+<body>
+<div id="row1" class="hide" onclick="hideSelect()"><div id="nowtime">09:31</div><div id="counttime">01 : 60</div></div>
+<div id="mu1" class=""><img src="menu_head.png" style="margin-bottom: -6px;" /><img src="menu_foot2.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+var ct = 60;
+var menuA= new Array("N01.jpg","N02.jpg","N03.jpg","N04.jpg","N05.jpg","N06.jpg","N07.jpg");
+for(var hh = 0;hh<menuA.length;hh++){
+$('<div  class="menuC1"></div>').css("background-image","url("+menuA[hh]+")").appendTo($("#mu1"));
+$('<div class="mex">期限：2016 年 06 月 09 日　尚餘：2 天 2 小時</div>').appendTo($("#mu1"));
+$('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('dataBG',menuA[hh]).appendTo($("#mu1"));
+}
+
+
+ $("#menuC").click(function(){
+	
+    var mclass = $(this).attr('class');
+	var mid = $.inArray( mclass, menuA ); 
+	console.log(mid);
+	if(mid != menuA.length-1){
+		$(this).attr('class',menuA[mid+1]);
+	}else{
+		$(this).attr('class',menuA[0]);
+	}
+ });
+ $("#clickC").click(function(){
+	ct = 59;
+	$("#counttime").text("01 : " +ct);
+	$("#mu1").addClass("hide");
+	$("#row1").removeClass().addClass($("#menuC").attr('class'));
+ });
+ function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+ function hideSelect(){
+  $("#row1").addClass("hide");
+	$("#mu1").removeClass("hide");
+ }
+ function setNowTime(){
+  var nowT = new Date();
+  var hh = '0'+nowT.getHours();
+  var mm = '0'+nowT.getMinutes();
+  var nexT = addDays(nowT,2);
+  var MM = '0'+(nexT.getMonth()+1);
+  var dd = '0'+(nexT.getDate());
+  var nowDiv = document.getElementById('nowtime');
+  nowDiv.innerHTML = hh.slice(-2)+":"+mm.slice(-2);
+  var nowDivMenu = document.getElementById('mex');
+  nowDivMenu.innerHTML = "期限：2016 年 "+MM.slice(-2)+" 月 "+dd.slice(-2)+" 日　尚餘：2 天 "+(nowT.getHours()%9+1)+" 小時";
+ }
+
+ setInterval(function(){
+  var countDiv = document.getElementById('counttime');
+  ct = parseInt(ct,10) >0 ?("0"+(ct -1)).slice(-2):59;
+  countDiv.innerHTML = "01 : " +ct;
+  setNowTime();
+ },1000);
+</script>
+</body>
+</html>
