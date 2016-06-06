@@ -30,14 +30,18 @@
   footer, header, hgroup, menu, nav, section {
    display: block;
   }
+  body{
+  background-color: #d8d8d8;
+  }
   #row1 {
    width: 360px;
    height: 640px;
  //  display: block;
    background-repeat: no-repeat;
+   background-size: 360px auto;
   }
   #mu1 {
-  background-color: #d8d8d8;
+  
    width: 360px;
    height: 640px;
    background-repeat: no-repeat;
@@ -68,23 +72,26 @@
    display: none;
   }
   #nowtime{
-   color: #ccc;
-   position: relative;
-   right: -293px;
-   width: 61px;
-   top: 4px;
-   font-size: 14px;
-   background-color: black;
-   text-align: right;
+    background-color: black;
+    color: #ccc;
+    font-size: 14px;
+    position: relative;
+    right: -318px;
+    text-align: right;
+    top: 4px;
+    width: 39px;
+	
   }
   #counttime{
-   background-color: #fda903;
-   position: relative;
-   right: -217px;
-   color: rgba(255, 255, 255, 0.8);
-   top: 561px;
-   font-size: 24px;
-   width: 90px;
+     background-color: #fda903;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    height: 36px;
+    position: relative;
+    right: -98px;
+    top: 561px;
+    width: 210px;
+    z-index: 19;
   }
   .clickC:last-of-type{
   margin-bottom: 88px;
@@ -92,7 +99,7 @@
  </style>
 </head>
 <body>
-<div id="row1" class="hide" onclick="hideSelect()"><div id="nowtime">09:31</div><div id="counttime">01 : 60</div></div>
+<div id="row1" class="hide" onclick="hideSelect()"><img src="menu_head.png" style="position: fixed; top: 0px;" /><div id="nowtime">09:31</div><div id="counttime">01 : 60</div><img src="menu_foot_time.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
 <div id="mu1" class=""><img src="menu_head.png" style="position: fixed; top: 0px;" /><img src="menu_foot2.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -101,26 +108,15 @@ var menuA= new Array("N01.jpg","N02.jpg","N03.jpg","N04.jpg","N05.jpg","N06.jpg"
 for(var hh = 0;hh<menuA.length;hh++){
 $('<div  class="menuC1"></div>').css("background-image","url("+menuA[hh]+")").appendTo($("#mu1"));
 $('<div class="mex">期限：2016 年 06 月 09 日　尚餘：2 天 2 小時</div>').appendTo($("#mu1"));
-$('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('dataBG',menuA[hh]).appendTo($("#mu1"));
+$('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('databg',menuA[hh]).appendTo($("#mu1"));
 }
 
-
- $("#menuC").click(function(){
-	
-    var mclass = $(this).attr('class');
-	var mid = $.inArray( mclass, menuA ); 
-	console.log(mid);
-	if(mid != menuA.length-1){
-		$(this).attr('class',menuA[mid+1]);
-	}else{
-		$(this).attr('class',menuA[0]);
-	}
- });
- $("#clickC").click(function(){
+ $(".clickC").click(function(){
 	ct = 59;
+	var act = $(this).attr('databg');
 	$("#counttime").text("01 : " +ct);
 	$("#mu1").addClass("hide");
-	$("#row1").removeClass().addClass($("#menuC").attr('class'));
+	$("#row1").removeClass().css("background-image", "url("+act+")" );
  });
  function addDays(date, days) {
     var result = new Date(date);
@@ -147,7 +143,7 @@ $('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('
  setInterval(function(){
   var countDiv = document.getElementById('counttime');
   ct = parseInt(ct,10) >0 ?("0"+(ct -1)).slice(-2):59;
-  countDiv.innerHTML = "01 : " +ct;
+  countDiv.innerHTML = "優惠倒數  01 : " +ct;
   setNowTime();
  },1000);
 </script>
