@@ -71,12 +71,12 @@
   .hide{
    display: none;
   }
-  #nowtime{
+  .nowtimeClass{
     background-color: black;
     color: #ccc;
     font-size: 14px;
-    position: relative;
-    right: -318px;
+    left: 318px;
+    position: fixed;
     text-align: right;
     top: 6px;
     width: 39px;
@@ -99,12 +99,13 @@
  </style>
 </head>
 <body>
-<div id="row1" class="hide" onclick="hideSelect()"><img src="menu_head.png" style="position: fixed; top: 0px;" /><div id="nowtime">09:31</div><div id="counttime">01 : 60</div><img src="menu_foot_time.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
-<div id="mu1" class=""><img src="menu_head.png" style="position: fixed; top: 0px;" /><img src="menu_foot2.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
+<div id="row1" class="hide" onclick="hideSelect()"><img src="menu_head.png" style="position: fixed; top: 0px;" /><div id="nowtime"  class="nowtimeClass">09:31</div><div id="counttime" >01 : 60</div><img src="menu_foot_time.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
+<div id="mu1" class=""><img src="menu_head.png" style="position: fixed; top: 0px;" /><div id="nowtime2"  class="nowtimeClass">09:31</div><img src="menu_foot2.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 var ct = 60;
-var menuA= new Array("N01.jpg","N02.jpg","N03.jpg","N04.jpg","N05.jpg","N06.jpg","N07.jpg");
+var menuA= new Array("N01.jpg","N02.jpg","N03.jpg","N04.jpg","N05.jpg","N06.jpg","N07.jpg",
+"N08.jpg","N09.jpg","N10.jpg","N11.jpg","N12.jpg","N13.jpg","N14.jpg","N15.jpg","N16.jpg","N17.jpg");
 for(var hh = 0;hh<menuA.length;hh++){
 $('<div  class="menuC1"></div>').css("background-image","url("+menuA[hh]+")").appendTo($("#mu1"));
 $('<div class="mex">期限：2016 年 06 月 09 日　尚餘：2 天 2 小時</div>').appendTo($("#mu1"));
@@ -136,8 +137,9 @@ $('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('
   var dd = '0'+(nexT.getDate());
   var nowDiv = document.getElementById('nowtime');
   nowDiv.innerHTML = hh.slice(-2)+":"+mm.slice(-2);
-  var nowDivMenu = document.getElementById('mex');
-  nowDivMenu.innerHTML = "期限：2016 年 "+MM.slice(-2)+" 月 "+dd.slice(-2)+" 日　尚餘：2 天 "+(nowT.getHours()%9+1)+" 小時";
+  $("#nowtime2").html(hh.slice(-2)+":"+mm.slice(-2));
+  //var nowDivMenu = document.getElementById('mex');
+  $(".mex").html( "期限：2016 年 "+MM.slice(-2)+" 月 "+dd.slice(-2)+" 日　尚餘：2 天 "+(nowT.getHours()%9+1)+" 小時");
  }
 
  setInterval(function(){
