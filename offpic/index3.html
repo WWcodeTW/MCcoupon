@@ -107,11 +107,14 @@
   #cf2{
   background-color: white; padding: 10px; width: 300px; margin: 280px auto;border-radius: 2px;
   }
+  #chbtn{
+  position: fixed; width: 330px; text-align: center; left: 15px; bottom: 10px; height: 40px; line-height: 40px; border-radius: 2px; background-color: rgb(253, 169, 3); color: white;
+  }
  </style>
 </head>
 <body>
-<div id="cf1" ><div id="cf2"><table style="margin: 1px auto;"><tr><td>確認兌換優惠</td></tr><tr><td style="font-size: 15px; height: 80px; vertical-align: middle;">請確認已在麥當勞餐廳櫃檯，點<br>選「立即兌換」後，需於兩分鐘內出示<br>給結帳人員。</td></tr><tr><td style="font-size: 12px; text-align: right; color: #2da99d;">暫不兌換　立即兌換</td></tr></table></div></div>
-<div id="row1" class="hide" ><img src="menu_head2.png" style="position: fixed; top: 0px;" onclick="hideSelect()" /><div id="nowtime"  class="nowtimeClass">09:31</div><div id="counttime" >優惠倒數　01 : 59</div><img src="menu_foot_time.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
+<div id="cf1" class="hide" ><div id="cf2"><table style="margin: 10px auto;"><tr><td style="font-size: 17px;">確認兌換優惠</td></tr><tr><td style="font-size: 15px; height: 80px; vertical-align: middle;">請確認已在麥當勞餐廳櫃檯，點<br>選「立即兌換」後，需於兩分鐘內出示<br>給結帳人員。</td></tr><tr><td style="font-size: 12px; text-align: right; color: #039789;"><span id="nochange">暫不兌換</span>　<span id="change">立即兌換</span></td></tr></table></div></div>
+<div id="row1" class="hide" ><img src="menu_head2.png" style="position: fixed; top: 0px;" onclick="hideSelect()" /><div id="nowtime"  class="nowtimeClass">09:31</div><div id="counttime" class="hide" >優惠倒數　01 : 59</div><img class="hide" id="timebg" src="menu_foot_time.png" style="position: fixed; bottom: 0px; left: 0px;" /><div id="chbtn">兌換優惠</div></div>
 <div id="mu1" class=""><img src="menu_head.png" style="position: fixed; top: 0px;" /><div id="nowtime2"  class="nowtimeClass">09:31</div><img src="menu_foot2.png" style="position: fixed; bottom: 0px; left: 0px;" /></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
@@ -125,12 +128,29 @@ $('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('
 }
 
  $(".clickC").click(function(){
-	ct = 59;
+	
 	var act = $(this).attr('databg');
-	$("#counttime").text("01 : " +ct);
 	$("#mu1").addClass("hide");
 	$("#row1").removeClass().css("background-image", "url("+act+")" );
+	$("#timebg").addClass("hide");
+	$("#counttime").addClass("hide");
+	$("#chbtn").removeClass();
+	
  });
+  $("#chbtn").click(function(){
+  $("#cf1").removeClass();
+  });
+  $("#change").click(function(){
+	  $("#cf1").addClass("hide");
+	  $("#chbtn").addClass("hide");
+	  ct = 59;
+	  $("#counttime").text("優惠倒數　01 : " +ct);
+	  $("#timebg").removeClass();
+	  $("#counttime").removeClass();
+  });
+  $("#nochange").click(function(){
+  $("#cf1").addClass("hide");
+  });
  function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
