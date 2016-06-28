@@ -87,11 +87,15 @@
     color: rgba(255, 255, 255, 0.8);
     font-size: 24px;
     height: 36px;
-    left: 98px;
+    left: 64px;
     position: fixed;
     top: 579px;
-    width: 210px;
-    z-index: 19;
+    width: 230px;
+    z-index: 19;vertical-align : middle;
+  }
+  #timecok{
+  vertical-align : middle;
+  margin-right:6px;margin-top: -5px;
   }
   .clickC:last-of-type{
   margin-bottom: 88px;
@@ -154,7 +158,7 @@ $('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('
 	  $("#cf1").addClass("hide");
 	  $("#chbtn").addClass("hide");
 	  ct = 59;
-	  $("#counttime").text("優惠倒數　01 : " +ct);
+	  $("#counttime").html('<img class="" id="timecok" src="clock.png" />'+"優惠倒數　01 : " +ct);
 	  $("#timebg").removeClass();
 	  $("#counttime").removeClass();
   });
@@ -187,7 +191,7 @@ $('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('
  setInterval(function(){
   var countDiv = document.getElementById('counttime');
   ct = parseInt(ct,10) >0 ?("0"+(ct -1)).slice(-2):59;
-  countDiv.innerHTML = "優惠倒數　01 : " +ct;
+  countDiv.innerHTML = '<img class="" id="timecok" src="clock.png" />'+"優惠倒數　01 : " +ct;
   setNowTime();
  },1000);
 </script>
