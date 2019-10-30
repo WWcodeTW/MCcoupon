@@ -133,7 +133,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 var ct = 60;
-var menuA= new Array("P_G023_nodata.jpg","P_Award_022.jpg","P_G023.jpg","P_G174.jpg","unknow01.jpg","unknow02.jpg","P_G011.jpg","P_G053.jpg","P_S050.jpg","P_S051.jpg","P_S109.jpg","P_Award_062.jpg","P_Award_061.jpg","P_G056.jpg","P_S065.jpg","P_G066.jpg","P_G098.jpg","P_G058.jpg","P_G138.jpg","P_G038.jpg","P_G047.jpg","P_G048.jpg","P_G042.jpg",'P_S034.jpg','P_G035.jpg','P_S043.jpg','P_S046.jpg','P_G093.jpg','P_G100.jpg');
+var menuA= new Array("P_G023_nodata.jpg","P_Award_022.jpg","P_G023.jpg","P_W100E.jpg","unknow01.jpg","unknow02.jpg","P_G011.jpg","P_G053.jpg","P_S050.jpg","P_S051.jpg","P_S109.jpg","P_Award_062.jpg","P_Award_061.jpg","P_G056.jpg","P_S065.jpg","P_G066.jpg","P_G098.jpg","P_G058.jpg","P_G138.jpg","P_G038.jpg","P_G047.jpg","P_G048.jpg","P_G042.jpg",'P_S034.jpg','P_G035.jpg','P_S043.jpg','P_S046.jpg','P_G093.jpg','P_G100.jpg');
 for(var hh = 0;hh<menuA.length;hh++){
 $('<div  class="menuC1"></div>').css("background-image","url("+menuA[hh]+")").appendTo($("#mu1"));
 $('<div class="mex">期限：2016 年 06 月 09 日　尚餘：2 天 2 小時</div>').appendTo($("#mu1"));
@@ -184,7 +184,7 @@ $('<img class="clickC" src="menu_foot.png" style="margin-left: 4px;" />').attr('
   nowDiv.innerHTML = hh.slice(-2)+":"+mm.slice(-2);
   $("#nowtime2").html(hh.slice(-2)+":"+mm.slice(-2));
   //var nowDivMenu = document.getElementById('mex');
-  $(".mex").html( "期限：2018 年 "+MM.slice(-2)+" 月 "+dd.slice(-2)+" 日　尚餘：2 天 "+(nowT.getHours()%9+1)+" 小時");
+  $(".mex").html( "期限：2019 年 "+MM.slice(-2)+" 月 "+dd.slice(-2)+" 日　尚餘：2 天 "+(nowT.getHours()%9+1)+" 小時");
  }
 
  setInterval(function(){
